@@ -11,7 +11,9 @@ function App() {
   useEffect(() => {
     async function fetchTodos() {
       try {
-        const response = await axios.get("http://localhost:4000/api/todos");
+        const response = await axios.get(
+          "https://todo-app-backend-pndr.onrender.com/api/todos"
+        );
         setTodos(response.data);
       } catch (error) {
         console.error(error);
@@ -24,7 +26,7 @@ function App() {
     try {
       if (editMode) {
         await axios.put(
-          `http://localhost:4000/api/todos/${editingTodo.id}`,
+          `https://todo-app-backend-pndr.onrender.com/api/todos/${editingTodo.id}`,
           newTodo
         );
         const updatedTodos = todos.map((todo) =>
@@ -35,7 +37,7 @@ function App() {
         setEditingTodo(null);
       } else {
         const response = await axios.post(
-          "http://localhost:4000/api/todos",
+          "https://todo-app-backend-pndr.onrender.com/api/todos",
           newTodo
         );
         setTodos([...todos, response.data]);
@@ -64,7 +66,7 @@ function App() {
   const handleUpdateTodo = async (id, completed) => {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/todos/${id}`,
+        `https://todo-app-backend-pndr.onrender.com/api/todos/${id}`,
         {
           completed: !completed,
         }
@@ -80,7 +82,9 @@ function App() {
 
   const handleDeleteTodo = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/api/todos/${id}`);
+      await axios.delete(
+        `https://todo-app-backend-pndr.onrender.com/api/todos/${id}`
+      );
       const updatedTodos = todos.filter((todo) => todo.id !== id);
       setTodos(updatedTodos);
     } catch (error) {
